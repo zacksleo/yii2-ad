@@ -58,7 +58,7 @@ class Ad extends \yii\db\ActiveRecord
                 'attribute' => 'image',
                 'scenarios' => ['insert', 'update'],
                 'placeholder' => '@app/modules/user/assets/images/userpic.jpg',
-                'galleryId' => 4,
+                'galleryId' => 1
             ],
         ];
     }
