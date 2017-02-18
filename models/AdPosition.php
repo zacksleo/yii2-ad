@@ -16,6 +16,9 @@ use zacksleo\yii2\ad\Module;
  */
 class AdPosition extends \yii\db\ActiveRecord
 {
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
+
     /**
      * @inheritdoc
      */
@@ -31,6 +34,7 @@ class AdPosition extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'slug'], 'required'],
+            ['slug', 'unique'],
             [['status'], 'integer'],
             [['name', 'slug', 'size'], 'string', 'max' => 255],
         ];
@@ -47,6 +51,18 @@ class AdPosition extends \yii\db\ActiveRecord
             'slug' => Module::t('ad', 'Slug'),
             'size' => Module::t('ad', 'Size'),
             'status' => Module::t('ad', 'Status'),
+        ];
+    }
+
+    /**
+     * 状态列表
+     * @return array
+     */
+    public static function getStatusList()
+    {
+        return [
+            self::STATUS_ACTIVE => Module::t('ad', 'Active'),
+            self::STATUS_INACTIVE => Module::t('ad', 'Inactive'),
         ];
     }
 }

@@ -2,6 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use zacksleo\yii2\ad\Module;
+use zacksleo\yii2\ad\models\AdPosition;
+use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model zacksleo\yii2\ad\models\AdPosition */
@@ -10,20 +14,44 @@ use yii\widgets\ActiveForm;
 
 <div class="ad-position-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <div class="row">
+        <div class="col-md-5">
+            <?php $form = ActiveForm::begin([
+                'options' => ['enctype' => 'multipart/form-data']
+            ]); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'position_id')->dropDownList(ArrayHelper::map(AdPosition::findAll(['status' => AdPosition::STATUS_ACTIVE]), 'id', 'name')) ?>
+            <?= $form->field($model, 'name') ?>
+            <?= $form->field($model, 'type') ?>
+            <?= $form->field($model, 'text')->textarea() ?>
 
-    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'image')->widget(FileInput::className(), [
+                'options' => [
+                    'accept' => 'image/*',
+                    'multiple' => false
+                ],
+                'pluginOptions' => [
+                    'initialPreview' => [
+                        $model->image,
+                    ],
+                    'showRemove' => true,
+                    'initialPreviewAsData' => true,
+                    'initialCaption' => $model->image,
+                    'overwriteInitial' => true,
+                    'maxFileSize' => 2800
+                ]
+            ]); ?>
 
-    <?= $form->field($model, 'size')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'url') ?>
+            <?= $form->field($model, 'status')->dropDownList($model::getStatusList()) ?>
+            <?= $form->field($model, 'order')->input('number') ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+            <div class="form-group">
+                <?= Html::submitButton($model->isNewRecord ? Module::t('ad', 'Create') : Module::t('ad', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            </div>
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('ad', 'Create') : Yii::t('ad', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?php ActiveForm::end(); ?>
+
+        </div>
     </div>
-
-    <?php ActiveForm::end(); ?>
-
 </div>

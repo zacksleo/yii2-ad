@@ -4,6 +4,7 @@ namespace zacksleo\yii2\ad\models;
 
 use Yii;
 use zacksleo\yii2\ad\Module;
+use mongosoft\file\UploadImageBehavior;
 
 /**
  * This is the model class for table "{{%ad}}".
@@ -20,6 +21,10 @@ use zacksleo\yii2\ad\Module;
  */
 class Ad extends \yii\db\ActiveRecord
 {
+
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
+
     /**
      * @inheritdoc
      */
@@ -37,7 +42,29 @@ class Ad extends \yii\db\ActiveRecord
             [['position_id', 'name'], 'required'],
             [['position_id', 'type', 'status', 'order'], 'integer'],
             [['text'], 'string'],
-            [['name', 'image', 'url'], 'string', 'max' => 255],
+            ['image', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
+            [['name', 'url'], 'string', 'max' => 255],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => UploadImageBehavior::className(),
+                'attribute' => 'image',
+                'scenarios' => ['insert', 'update'],
+                'placeholder' => '@app/modules/user/assets/images/userpic.jpg',
+                'path' => '@frontend/web/galleries/'.date('Ymd'),
+                'url' => '@web/galleries/'.date('Ymd'),
+                'thumbs' => [
+                    'thumb' => ['width' => 400, 'quality' => 90],
+                    'preview' => ['width' => 200, 'height' => 200],
+                ],
+            ],
         ];
     }
 
@@ -56,6 +83,18 @@ class Ad extends \yii\db\ActiveRecord
             'url' => Module::t('ad', 'Url'),
             'status' => Module::t('ad', 'Status'),
             'order' => Module::t('ad', 'Order'),
+        ];
+    }
+
+    /**
+     * 状态列表
+     * @return array
+     */
+    public static function getStatusList()
+    {
+        return [
+            self::STATUS_ACTIVE => Module::t('ad', 'Active'),
+            self::STATUS_INACTIVE => Module::t('ad', 'Inactive'),
         ];
     }
 }

@@ -2,11 +2,12 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use zacksleo\yii2\ad\Module;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('ad', 'Ad Positions');
+$this->title = Module::t('ad', 'Ad Positions');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ad-position-index">
@@ -14,17 +15,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('ad', 'Create Ad Position'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Module::t('ad', 'Create'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
             'name',
-            'slug',
-            'size',
+            'position_id',
+            'type',
             'status',
 
             ['class' => 'yii\grid\ActionColumn'],
