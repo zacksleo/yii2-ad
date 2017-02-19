@@ -4,7 +4,7 @@ namespace zacksleo\yii2\ad\models;
 
 use Yii;
 use zacksleo\yii2\ad\Module;
-use mongosoft\file\UploadImageBehavior;
+use zacksleo\yii2\gallery\behaviors\UploadImageBehavior;
 
 /**
  * This is the model class for table "{{%ad}}".
@@ -58,12 +58,7 @@ class Ad extends \yii\db\ActiveRecord
                 'attribute' => 'image',
                 'scenarios' => ['insert', 'update'],
                 'placeholder' => '@app/modules/user/assets/images/userpic.jpg',
-                'path' => '@frontend/web/galleries/'.date('Ymd'),
-                'url' => '@web/galleries/'.date('Ymd'),
-                'thumbs' => [
-                    'thumb' => ['width' => 400, 'quality' => 90],
-                    'preview' => ['width' => 200, 'height' => 200],
-                ],
+                'galleryId' => 4,
             ],
         ];
     }
