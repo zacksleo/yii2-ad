@@ -5,6 +5,7 @@ namespace zacksleo\yii2\ad\models;
 use Yii;
 use zacksleo\yii2\ad\Module;
 use zacksleo\yii2\gallery\behaviors\UploadImageBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%ad}}".
@@ -19,9 +20,8 @@ use zacksleo\yii2\gallery\behaviors\UploadImageBehavior;
  * @property integer $status
  * @property integer $order
  */
-class Ad extends \yii\db\ActiveRecord
+class Ad extends ActiveRecord
 {
-
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
 
