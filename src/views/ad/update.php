@@ -11,7 +11,7 @@ $this->title = Module::t('ad', 'Update ', [
     ]) . $model->name;
 $this->params['breadcrumbs'][] = ['label' => Module::t('ad', 'Ad Positions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('ad', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('yii', 'Update');
 ?>
 <div class="ad-position-update">
 

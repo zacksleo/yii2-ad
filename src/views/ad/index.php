@@ -7,7 +7,7 @@ use zacksleo\yii2\ad\Module;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Module::t('ad', 'Ad Positions');
+$this->title = Module::t('ad', 'Ads');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ad-position-index">

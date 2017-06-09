@@ -23,4 +23,5 @@ return [
     'Order' => '序号',
 
     'Ad Positions' => '广告位置',
+    'Ads' => '广告列表',
 ];
