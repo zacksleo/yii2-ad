@@ -25,18 +25,18 @@ use kartik\file\FileInput;
             <?= $form->field($model, 'type') ?>
             <?= $form->field($model, 'text')->textarea() ?>
 
-            <?= $form->field($model, 'image')->widget(FileInput::className(), [
+            <?= $form->field($model, 'img')->widget(FileInput::className(), [
                 'options' => [
                     'accept' => 'image/*',
                     'multiple' => false
                 ],
                 'pluginOptions' => [
                     'initialPreview' => [
-                        $model->image,
+                        $model->img,
                     ],
                     'showRemove' => true,
                     'initialPreviewAsData' => true,
-                    'initialCaption' => $model->image,
+                    'initialCaption' => $model->img,
                     'overwriteInitial' => true,
                     'maxFileSize' => 2800
                 ]

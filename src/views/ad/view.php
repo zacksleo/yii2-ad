@@ -8,7 +8,7 @@ use zacksleo\yii2\ad\Module;
 /* @var $model zacksleo\yii2\ad\models\AdPosition */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Module::t('ad', 'Ad Positions'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Module::t('ad', 'Ads'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ad-position-view">
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
-            'image',
+            'img',
             'type',
             'text',
             'url',

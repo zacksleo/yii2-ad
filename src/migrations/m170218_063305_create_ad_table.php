@@ -20,7 +20,7 @@ class m170218_063305_create_ad_table extends Migration
             'id' => $this->primaryKey(),
             'position_id' => $this->integer()->notNull(),
             'name' => $this->string()->notNull(),
-            'image' => $this->string(),
+            'img' => $this->string(),
             'text' => $this->text(),
             'type' => $this->smallInteger(),
             'url' => $this->string(),

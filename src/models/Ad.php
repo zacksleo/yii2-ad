@@ -3,6 +3,7 @@
 namespace zacksleo\yii2\ad\models;
 
 use Yii;
+use yii\helpers\Url;
 use zacksleo\yii2\ad\Module;
 use zacksleo\yii2\gallery\behaviors\UploadImageBehavior;
 use yii\db\ActiveRecord;
@@ -13,7 +14,7 @@ use yii\db\ActiveRecord;
  * @property integer $id
  * @property integer $position_id
  * @property string $name
- * @property string $image
+ * @property string $img
  * @property string $text
  * @property integer $type
  * @property string $url
@@ -42,7 +43,7 @@ class Ad extends ActiveRecord
             [['position_id', 'name'], 'required'],
             [['position_id', 'type', 'status', 'order'], 'integer'],
             [['text'], 'string'],
-            ['image', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
+            ['img', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
             [['name', 'url'], 'string', 'max' => 255],
         ];
     }
@@ -55,7 +56,7 @@ class Ad extends ActiveRecord
         return [
             [
                 'class' => UploadImageBehavior::className(),
-                'attribute' => 'image',
+                'attribute' => 'img',
                 'scenarios' => ['insert', 'update'],
                 'placeholder' => '@app/modules/user/assets/images/userpic.jpg',
                 'galleryId' => 1
@@ -72,13 +73,24 @@ class Ad extends ActiveRecord
             'id' => Module::t('ad', 'ID'),
             'position_id' => Module::t('ad', 'Position ID'),
             'name' => Module::t('ad', 'Name'),
-            'image' => Module::t('ad', 'Image'),
+            'img' => Module::t('ad', 'Image'),
             'text' => Module::t('ad', 'Text'),
             'type' => Module::t('ad', 'Type'),
             'url' => Module::t('ad', 'Url'),
             'status' => Module::t('ad', 'Status'),
             'order' => Module::t('ad', 'Order'),
         ];
+    }
+
+    public function fields()
+    {
+        $fields = parent::fields();
+        unset($fields['id'], $fields['position_id'], $fields['name'], $fields['text'], $fields['type'], $fields['status'], $fields['order']);
+        $fields['img'] = function () {
+            $url = Url::to(['file/view', 'path' => $this->getUploadPath('img')], true);
+            return $url;
+        };
+        return $fields;
     }
 
     /**
@@ -91,5 +103,10 @@ class Ad extends ActiveRecord
             self::STATUS_ACTIVE => Module::t('ad', 'Active'),
             self::STATUS_INACTIVE => Module::t('ad', 'Inactive'),
         ];
+    }
+
+    public function getAdPosition()
+    {
+        return $this->hasOne(AdPosition::className(), ['id' => 'position_id']);
     }
 }
