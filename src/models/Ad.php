@@ -87,7 +87,11 @@ class Ad extends ActiveRecord
         $fields = parent::fields();
         unset($fields['id'], $fields['position_id'], $fields['name'], $fields['text'], $fields['type'], $fields['status'], $fields['order']);
         $fields['img'] = function () {
-            $url = Url::to(['file/view', 'path' => $this->getUploadPath('img')], true);
+            if (isset($_ENV['API_HOST'])) {
+                $url = $_ENV['API_HOST'].'files/'.$this->getUploadUrl('img');
+            } else {
+                $url = Url::to(['file/view', 'path' => $this->getUploadUrl('img')], true);
+            }
             return $url;
         };
         return $fields;

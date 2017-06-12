@@ -12,7 +12,7 @@
   "minimum-stability": "stable",
   "require": {
     "yiisoft/yii2": "*",
-    "mongosoft/yii2-upload-behavior": "*"
+    "zacksleo/yii2-gallery": "^1.1"
   },
   "autoload": {
     "psr-4": {
