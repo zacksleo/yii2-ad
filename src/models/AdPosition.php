@@ -55,6 +55,14 @@ class AdPosition extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAds()
+    {
+        return $this->hasMany(Ad::className(), ['position_id' => 'id']);
+    }
+
+    /**
      * 状态列表
      * @return array
      */
