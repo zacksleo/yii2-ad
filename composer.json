@@ -14,9 +14,19 @@
     "yiisoft/yii2": "*",
     "zacksleo/yii2-gallery": "^1.1"
   },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0"
+  },
   "autoload": {
     "psr-4": {
-      "zacksleo\\yii2\\ad\\": "src"
+      "zacksleo\\yii2\\ad\\": "src",
+      "zacksleo\\yii2\\ad\\tests\\": "tests"
+    }
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
     }
   }
 }
