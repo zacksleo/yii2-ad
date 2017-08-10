@@ -65,8 +65,8 @@ class TestCase extends PHPUnit_Framework_TestCase
                 'settings' => [
                     'class' => 'pheme\settings\components\Settings'
                 ],
-                'cache'  =>[
-                    'class' =>'yii\caching\ArrayCache'
+                'cache' => [
+                    'class' => 'yii\caching\ArrayCache'
                 ],
             ],
             'modules' => [
@@ -102,8 +102,8 @@ class TestCase extends PHPUnit_Framework_TestCase
                 'settings' => [
                     'class' => 'pheme\settings\components\Settings'
                 ],
-                'cache'  =>[
-                    'class' =>'yii\caching\ArrayCache'
+                'cache' => [
+                    'class' => 'yii\caching\ArrayCache'
                 ],
             ],
             'modules' => [
@@ -141,7 +141,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     protected function createTestDbData()
     {
-         $db = Yii::$app->getDb();
+        $db = Yii::$app->getDb();
         $adSql = <<<EOF
             -- auto-generated definition
             create table tb_ad

@@ -8,7 +8,6 @@
 
 namespace zacksleo\yii2\ad\tests;
 
-
 use zacksleo\yii2\ad\models\AdPosition;
 
 class AdPositionTest extends TestCase

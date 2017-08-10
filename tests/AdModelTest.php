@@ -36,7 +36,7 @@ class AdModelTest extends TestCase
 
     public function testRules()
     {
-       $this->delPosition();
+        $this->delPosition();
     }
 
     public function testAdd()
