@@ -13,7 +13,7 @@ use zacksleo\yii2\ad\models\AdPosition;
 class AdPositionTest extends TestCase
 {
     /**
-     * @var \zacksleo\yii2\ad\models\AdPosition
+     * @var  \zacksleo\yii2\ad\models\AdPosition
      */
     public $model;
 
