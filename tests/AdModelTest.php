@@ -84,7 +84,7 @@ class AdModelTest extends TestCase
 
     public function testGetStatusList()
     {
-        $status = AdPosition::getStatusList();
+        $status = Ad::getStatusList();
         $this->assertTrue(count($status) == 2);
         $this->delPosition();
     }
