@@ -19,8 +19,7 @@ Yii::setAlias('@migrate', dirname(__DIR__) . '/src/migrations');
 
 Yii::setAlias('@zacksleo\yii2\ad\messages', dirname(__DIR__) . '/src/messages');
 
-Yii::setAlias('@frontend/web/uploads/galleries', __DIR__ . '/img-path/front');
+Yii::setAlias('@frontend/web/uploads/galleries/', __DIR__ . '/img-path/front');
 
 Yii::setAlias("@web/uploads/galleries/", __DIR__ . '/img-path/web');
 
-Yii::setAlias("@app/modules/user/assets/images/userpic.jpg", __DIR__ . '/img-path/userpic.jpg');
