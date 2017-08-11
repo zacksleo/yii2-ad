@@ -47,7 +47,7 @@ class AdPositionTest extends TestCase
     public function testUpdate()
     {
         $this->model->name = "banner";
-        $this->model->slug = "slug";
+        $this->model->slug = "banner-slug";
         $this->model->size = "200*400";
         $this->model->status = AdPosition::STATUS_ACTIVE;
         $this->assertTrue($this->model->save());
@@ -59,8 +59,7 @@ class AdPositionTest extends TestCase
 
     public function testGetStatusList()
     {
-        $res = AdPosition::getStatusList();
-        $this->assertTrue($res[1] == 'Active');
-        $this->assertTrue($res[0] == 'Inactive');
+        $status = AdPosition::getStatusList();
+        $this->assertTrue(count($status)==2);
     }
 }

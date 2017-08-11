@@ -35,6 +35,11 @@ class AdModelTest extends TestCase
 
     public function testRules()
     {
+        $this->model->name = "i am name";
+        $this->model->status = Ad::STATUS_ACTIVE;
+        $this->assertFalse($this->model->validate());
+        $this->model->position_id = $this->positionId;
+        $this->assertTrue($this->model->validate());
         $this->delPosition();
     }
 
@@ -75,6 +80,13 @@ class AdModelTest extends TestCase
     public function testDelete()
     {
         $this->assertTrue(AdPosition::findOne(['id' => $this->positionId])->delete() > 0);
+    }
+
+    public function testGetStatusList()
+    {
+        $status = AdPosition::getStatusList();
+        $this->assertTrue(count($status) == 2);
+        $this->delPosition();
     }
 
     private function delPosition()
