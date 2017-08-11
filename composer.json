@@ -22,11 +22,5 @@
       "zacksleo\\yii2\\ad\\": "src",
       "zacksleo\\yii2\\ad\\tests\\": "tests"
     }
-  },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://asset-packagist.org"
-    }
-  ]
+  }
 }
