@@ -23,10 +23,10 @@
       "zacksleo\\yii2\\ad\\tests\\": "tests"
     }
   },
-  "repositories": {
-    "packagist": {
+  "repositories": [
+    {
       "type": "composer",
-      "url": "https://packagist.phpcomposer.com"
+      "url": "https://asset-packagist.org"
     }
-  }
+  ]
 }
