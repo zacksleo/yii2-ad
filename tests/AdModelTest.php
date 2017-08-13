@@ -102,12 +102,17 @@ class AdModelTest extends TestCase
         $this->delPosition();
     }
 
+    public function testFields()
+    {
+        $res = $this->model->fields();
+        $this->delPosition();
+    }
+
     private function delPosition()
     {
         $find = AdPosition::findOne(['id' => $this->positionId]);
         $this->assertTrue($find->delete() > 0);
     }
-
 
     /**
      * @inheritdoc
