@@ -15,7 +15,7 @@
     <filter>
         <whitelist>
             <directory suffix=".php">./src/models</directory>
-            <directory suffix=".php">./src/controllers</directory>
+            <directory suffix=".php">./tests/controllers</directory>
         </whitelist>
     </filter>
 </phpunit>

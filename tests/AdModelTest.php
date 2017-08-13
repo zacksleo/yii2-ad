@@ -77,10 +77,12 @@ class AdModelTest extends TestCase
         $this->model->url = "link-url";
         $this->model->status = 1;
         $this->model->order = 1;
+        $this->model->scenario = "insert";
         $this->assertTrue($this->model->save());
         $find = Ad::findOne(['id' => $this->model->id]);
         $find->text = "mg-path";
         $find->img = "text";
+        $find->scenario = "update";
         $this->assertTrue($find->save());
         $this->assertTrue($this->model->delete() > 0);
         $this->delPosition();
