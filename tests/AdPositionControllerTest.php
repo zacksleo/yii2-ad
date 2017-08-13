@@ -73,5 +73,4 @@ class AdPositionControllerTest extends TestCase
         $this->assertTrue($position->id > 0);
         return $position;
     }
-
 }

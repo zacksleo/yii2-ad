@@ -1,5 +1,6 @@
 <?php
 namespace yii\web;
+
 /**
  * Mock for the is_uploaded_file() function for web classes.
  * @return boolean
