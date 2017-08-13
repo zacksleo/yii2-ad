@@ -42,7 +42,9 @@ class AdControllerTest extends TestCase
 
     public function testIndex()
     {
+        Yii::$app->request->bodyParams = ['Ad'=>['position_id' => $this->position->id]];
         $response = Yii::$app->runAction('ad/ad/index');
+        $this->assertTrue(count($response) == 1);
     }
 
     public function testUpdate()
