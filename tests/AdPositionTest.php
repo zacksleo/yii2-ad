@@ -25,9 +25,9 @@ class AdPositionTest extends TestCase
 
     public function testRules()
     {
-        $this->model->name = "i am the first position";
-        $this->model->slug = "i am the first slug";
-        $this->model->size = "i am the first size";
+        $this->model->name = "i am the test position";
+        $this->model->slug = "i am the test slug";
+        $this->model->size = "i am the test size";
         $this->model->status = '1';
         $this->assertTrue($this->model->validate());
         $this->model->status = '1a';

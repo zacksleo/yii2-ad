@@ -1,4 +1,21 @@
 <?php
+namespace yii\web;
+/**
+ * Mock for the is_uploaded_file() function for web classes.
+ * @return boolean
+ */
+function is_uploaded_file($filename)
+{
+    return file_exists($filename);
+}
+/**
+ * Mock for the move_uploaded_file() function for web classes.
+ * @return boolean
+ */
+function move_uploaded_file($filename, $destination)
+{
+    return copy($filename, $destination);
+}
 
 namespace zacksleo\yii2\ad\tests;
 
@@ -14,6 +31,7 @@ use yii\helpers\ArrayHelper;
  * Date: 2017/8/7
  * Time: 下午1:49
  */
+
 class TestCase extends PHPUnit_Framework_TestCase
 {
     /**
@@ -24,7 +42,7 @@ class TestCase extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->mockApplication();
+        $this->mockWebApplication();
         $this->createTestDbData();
     }
 
@@ -52,7 +70,7 @@ class TestCase extends PHPUnit_Framework_TestCase
                     'class' => 'yii\db\Connection',
                     'dsn' => 'mysql:host=localhost:3306;dbname=test',
                     'username' => 'root',
-                    'password' => '123456',
+                    'password' => '',
                     'tablePrefix' => 'tb_'
                 ],
                 'i18n' => [
@@ -62,17 +80,11 @@ class TestCase extends PHPUnit_Framework_TestCase
                         ]
                     ]
                 ],
-                'settings' => [
-                    'class' => 'pheme\settings\components\Settings'
-                ],
-                'cache' => [
-                    'class' => 'yii\caching\ArrayCache'
-                ],
             ],
             'modules' => [
-                'settings' => [
-                    'class' => 'pheme\settings\Module',
-                    'sourceLanguage' => 'en'
+                'ad' => [
+                    'class' => 'zacksleo\yii2\ad\Module',
+                    'controllerNamespace'=>'zacksleo\yii2\ad\tests\controllers'
                 ]
             ]
         ], $config));
@@ -89,7 +101,7 @@ class TestCase extends PHPUnit_Framework_TestCase
                     'class' => 'yii\db\Connection',
                     'dsn' => 'mysql:host=localhost:3306;dbname=test',
                     'username' => 'root',
-                    'password' => '123456',
+                    'password' => '',
                     'tablePrefix' => 'tb_'
                 ],
                 'i18n' => [
@@ -99,17 +111,11 @@ class TestCase extends PHPUnit_Framework_TestCase
                         ]
                     ]
                 ],
-                'settings' => [
-                    'class' => 'pheme\settings\components\Settings'
-                ],
-                'cache' => [
-                    'class' => 'yii\caching\ArrayCache'
-                ],
             ],
             'modules' => [
-                'settings' => [
-                    'class' => '\pheme\settings\Module',
-                    'sourceLanguage' => 'en'
+                'ad' => [
+                    'class' => 'zacksleo\yii2\ad\Module',
+                    'controllerNamespace'=>'zacksleo\yii2\ad\tests\controllers'
                 ]
             ]
 
