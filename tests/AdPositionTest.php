@@ -60,6 +60,6 @@ class AdPositionTest extends TestCase
     public function testGetStatusList()
     {
         $status = AdPosition::getStatusList();
-        $this->assertTrue(count($status)==2);
+        $this->assertTrue(count($status) == 2);
     }
 }

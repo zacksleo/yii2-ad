@@ -22,6 +22,7 @@ class AdpositionController extends Controller
             'query' => AdPosition::find(),
         ]);
     }
+
     /**
      * Displays a single AdPosition model.
      * @param integer $id
@@ -41,14 +42,14 @@ class AdpositionController extends Controller
     {
         $data = Yii::$app->request->bodyParams;
         $find = AdPosition::find()->all();
-        if(count($find) == 1){
+        if (count($find) == 1) {
             return $find[0];
         }
         $model = new AdPosition();
-        if($model->load($data) && $model->save()) {
+        if ($model->load($data) && $model->save()) {
             return $model;
         }
-       return 0;
+        return 0;
     }
 
     /**
@@ -61,7 +62,7 @@ class AdpositionController extends Controller
     {
         $data = Yii::$app->request->bodyParams;
         $model = $this->findModel($id);
-        if($model->load($data) && $model->save()){
+        if ($model->load($data) && $model->save()) {
             return true;
         }
         return false;

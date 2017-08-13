@@ -8,6 +8,7 @@ function is_uploaded_file($filename)
 {
     return file_exists($filename);
 }
+
 /**
  * Mock for the move_uploaded_file() function for web classes.
  * @return boolean
@@ -31,7 +32,6 @@ use yii\helpers\ArrayHelper;
  * Date: 2017/8/7
  * Time: 下午1:49
  */
-
 class TestCase extends PHPUnit_Framework_TestCase
 {
     /**
@@ -84,7 +84,7 @@ class TestCase extends PHPUnit_Framework_TestCase
             'modules' => [
                 'ad' => [
                     'class' => 'zacksleo\yii2\ad\Module',
-                    'controllerNamespace'=>'zacksleo\yii2\ad\tests\controllers'
+                    'controllerNamespace' => 'zacksleo\yii2\ad\tests\controllers'
                 ]
             ]
         ], $config));
@@ -115,7 +115,7 @@ class TestCase extends PHPUnit_Framework_TestCase
             'modules' => [
                 'ad' => [
                     'class' => 'zacksleo\yii2\ad\Module',
-                    'controllerNamespace'=>'zacksleo\yii2\ad\tests\controllers'
+                    'controllerNamespace' => 'zacksleo\yii2\ad\tests\controllers'
                 ]
             ]
 

@@ -2,6 +2,7 @@
 use zacksleo\yii2\ad\models\AdPosition;
 use zacksleo\yii2\ad\tests\TestCase;
 use yii\web\UploadedFile;
+
 /**
  * Created by PhpStorm.
  * User: zjw
@@ -23,15 +24,15 @@ class AdControllerTest extends TestCase
 
     public function testCreate()
     {
-        $data  = [
-            'Ad' =>[
-                'img'=> UploadedFile::getInstanceByName('image'),
-                'position_id'=> $this->position->id,
+        $data = [
+            'Ad' => [
+                'img' => UploadedFile::getInstanceByName('image'),
+                'position_id' => $this->position->id,
                 'name' => "page-banner",
-                'text'=>'text',
-                'url'=>'link-url',
-                'status'=>1,
-                'order'=>1,
+                'text' => 'text',
+                'url' => 'link-url',
+                'status' => 1,
+                'order' => 1,
             ]
         ];
         Yii::$app->request->bodyParams = $data;
@@ -41,38 +42,38 @@ class AdControllerTest extends TestCase
 
     public function testUpdate()
     {
-        $data  = [
-            'Ad' =>[
-                'img'=> UploadedFile::getInstanceByName('image'),
-                'position_id'=> $this->position->id,
+        $data = [
+            'Ad' => [
+                'img' => UploadedFile::getInstanceByName('image'),
+                'position_id' => $this->position->id,
                 'name' => "page-banner",
-                'text'=>'text',
-                'url'=>'link-url',
-                'status'=>1,
-                'order'=>1,
+                'text' => 'text',
+                'url' => 'link-url',
+                'status' => 1,
+                'order' => 1,
             ]
         ];
         Yii::$app->request->bodyParams = $data;
         $response = Yii::$app->runAction('ad/ad/create');
         $this->assertTrue($response->id > 0);
         $data['Ad']['id'] = $response->id;
-        $data['Ad']['name']  = "page-banner updated";
+        $data['Ad']['name'] = "page-banner updated";
         Yii::$app->request->bodyParams = $data;
-        $response = Yii::$app->runAction('ad/ad/update',['id'=>$response->id]);
-        $this->assertTrue($response->id >0);
+        $response = Yii::$app->runAction('ad/ad/update', ['id' => $response->id]);
+        $this->assertTrue($response->id > 0);
         $this->view($response->id);
         $this->delete($response->id);
     }
 
     private function delete($id)
     {
-        $response = Yii::$app->runAction('ad/ad/delete',['id'=>$id]);
-        $this->assertTrue($response>0);
+        $response = Yii::$app->runAction('ad/ad/delete', ['id' => $id]);
+        $this->assertTrue($response > 0);
     }
 
     private function view($id)
     {
-        $response = Yii::$app->runAction('ad/ad/view',['id'=>$id]);
+        $response = Yii::$app->runAction('ad/ad/view', ['id' => $id]);
         $this->assertTrue($response->id == $id);
     }
 
