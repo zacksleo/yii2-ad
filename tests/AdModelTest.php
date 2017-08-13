@@ -56,7 +56,8 @@ class AdModelTest extends TestCase
 
         $this->model->type = 1;
         $this->model->position_id = $this->positionId;
-        $this->assertTrue($this->model->validate());
+        $this->model->img = UploadedFile::getInstanceByName('txt');
+        $this->assertFalse($this->model->validate());
 
         $this->delPosition();
     }
@@ -130,6 +131,13 @@ class AdModelTest extends TestCase
                 'type' => 'image/jpeg',
                 'size' => 74463,
                 'tmp_name' => __DIR__ . '/img-path/php79AD.tmp',
+                'error' => 0,
+            ],
+            'txt' => [
+                'name' => 'test.txt',
+                'type' => 'image/jpeg',
+                'size' => 74463,
+                'tmp_name' => __DIR__ . '/img-path/test.txt',
                 'error' => 0,
             ],
         ];
