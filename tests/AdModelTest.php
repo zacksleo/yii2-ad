@@ -58,7 +58,6 @@ class AdModelTest extends TestCase
         $this->model->position_id = $this->positionId;
         $this->assertTrue($this->model->validate());
 
-       // $this->assertTrue($this->model->validate());
         $this->delPosition();
     }
 
