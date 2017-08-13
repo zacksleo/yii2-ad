@@ -3,6 +3,7 @@
 namespace zacksleo\yii2\ad\tests\controllers;
 
 use Yii;
+use yii\data\ActiveDataProvider;
 use zacksleo\yii2\ad\models\Ad;
 use yii\web\Controller;
 
@@ -12,6 +13,13 @@ class AdController extends Controller
      * Lists all Ad models.
      * @return mixed
      */
+    public function actionIndex()
+    {
+        return $dataProvider = new ActiveDataProvider([
+            'query' => Ad::find(),
+        ]);
+    }
+
     public function actionCreate()
     {
         $data =Yii::$app->request->bodyParams;

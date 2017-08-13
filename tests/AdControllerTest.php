@@ -40,6 +40,11 @@ class AdControllerTest extends TestCase
         $this->delete($response->id);
     }
 
+    public function testIndex()
+    {
+        $response = Yii::$app->runAction('ad/ad/index');
+    }
+
     public function testUpdate()
     {
         $data = [
