@@ -46,8 +46,19 @@ class AdModelTest extends TestCase
         $this->model->name = "i am name";
         $this->model->status = Ad::STATUS_ACTIVE;
         $this->assertFalse($this->model->validate());
+
+        $this->model->position_id = "1a";
+        $this->assertFalse($this->model->validate());
+
+        $this->model->position_id = $this->positionId;
+        $this->model->type = "1a";
+        $this->assertFalse($this->model->validate());
+
+        $this->model->type = 1;
         $this->model->position_id = $this->positionId;
         $this->assertTrue($this->model->validate());
+
+       // $this->assertTrue($this->model->validate());
         $this->delPosition();
     }
 
