@@ -49,7 +49,7 @@ class AdpositionController extends Controller
         if ($model->load($data) && $model->save()) {
             return $model;
         }
-        return 0;
+        return null;
     }
 
     /**

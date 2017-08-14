@@ -4,6 +4,7 @@ namespace zacksleo\yii2\ad\tests\controllers;
 
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\web\NotFoundHttpException;
 use zacksleo\yii2\ad\models\Ad;
 use yii\web\Controller;
 

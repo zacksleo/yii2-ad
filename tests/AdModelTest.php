@@ -56,6 +56,8 @@ class AdModelTest extends TestCase
 
         $this->model->type = 1;
         $this->model->position_id = $this->positionId;
+        $this->model->order = 1;
+        $this->assertTrue($this->model->validate());
 
         $this->delPosition();
     }
@@ -64,7 +66,7 @@ class AdModelTest extends TestCase
     {
         $this->model->position_id = $this->positionId;
         $this->model->name = "page-banner";
-        $this->model->img =  UploadedFile::getInstanceByName('image');
+        $this->model->img = UploadedFile::getInstanceByName('image');
         $this->model->text = "text";
         $this->model->type = 1;
         $this->model->url = "link-url";
