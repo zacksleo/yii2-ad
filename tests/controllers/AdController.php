@@ -23,7 +23,7 @@ class AdController extends Controller
 
     public function actionCreate()
     {
-        $data =Yii::$app->request->bodyParams;
+        $data = Yii::$app->request->bodyParams;
         $model = new Ad();
         $model->setScenario('insert');
         $model->load($data) && $model->save();
@@ -32,7 +32,7 @@ class AdController extends Controller
 
     public function actionUpdate($id)
     {
-        $data =Yii::$app->request->bodyParams;
+        $data = Yii::$app->request->bodyParams;
         $model = $this->findModel($id);
         $model->scenario = 'update';
         $model->load($data) && $model->save();
