@@ -85,7 +85,7 @@ class Ad extends ActiveRecord
     public function fields()
     {
         $fields = parent::fields();
-        unset($fields['id'], $fields['position_id'], $fields['name'], $fields['text'], $fields['type'], $fields['status'], $fields['order']);
+        unset($fields['id'], $fields['position_id'],  $fields['text'], $fields['type'], $fields['status'], $fields['order']);
         $fields['img'] = function () {
             $path = str_replace('api/uploads/', '', $this->getUploadUrl('img'));
             if (isset($_ENV['API_HOST'])) {
