@@ -3,17 +3,16 @@
 namespace zacksleo\yii2\ad\controllers;
 
 use Yii;
-use zacksleo\yii2\ad\models\Ad;
+use zacksleo\yii2\ad\models\AdPosition;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use zacksleo\yii2\ad\models\AdPosition;
 
 /**
- * AdController implements the CRUD actions for Ad model.
+ * AdPositionController implements the CRUD actions for AdPosition model.
  */
-class AdController extends Controller
+class DefaultController extends Controller
 {
     /**
      * @inheritdoc
@@ -31,20 +30,13 @@ class AdController extends Controller
     }
 
     /**
-     * Lists all Ad models.
+     * Lists all AdPosition models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $slug = Yii::$app->request->get('slug');
-        $query = Ad::find();
-        $this->view->title = '广告列表: ';
-        if (!empty($slug) && ($position = AdPosition::findOne(['slug' => $slug])) != null) {
-            $query = $query->andWhere(['position_id' => $position->id]);
-            $this->view->title .= $position->name;
-        }
         $dataProvider = new ActiveDataProvider([
-            'query' => $query
+            'query' => AdPosition::find(),
         ]);
 
         return $this->render('index', [
@@ -53,7 +45,7 @@ class AdController extends Controller
     }
 
     /**
-     * Displays a single Ad model.
+     * Displays a single AdPosition model.
      * @param integer $id
      * @return mixed
      */
@@ -65,14 +57,14 @@ class AdController extends Controller
     }
 
     /**
-     * Creates a new Ad model.
+     * Creates a new AdPosition model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Ad();
-        $model->setScenario('insert');
+        $model = new AdPosition();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -83,7 +75,7 @@ class AdController extends Controller
     }
 
     /**
-     * Updates an existing Ad model.
+     * Updates an existing AdPosition model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -91,7 +83,7 @@ class AdController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $model->scenario = 'update';
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -102,7 +94,7 @@ class AdController extends Controller
     }
 
     /**
-     * Deletes an existing Ad model.
+     * Deletes an existing AdPosition model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -115,15 +107,15 @@ class AdController extends Controller
     }
 
     /**
-     * Finds the Ad model based on its primary key value.
+     * Finds the AdPosition model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Ad the loaded model
+     * @return AdPosition the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Ad::findOne($id)) !== null) {
+        if (($model = AdPosition::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

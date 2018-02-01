@@ -3,12 +3,11 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use zacksleo\yii2\ad\Module;
-use zacksleo\yii2\ad\models\Ad;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->params['breadcrumbs'][] = ['label' => '广告位', 'url' => \yii\helpers\Url::to(['default/index'])];
+$this->title = Module::t('ad', 'Ad Positions');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ad-position-index">
@@ -22,20 +21,29 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+
             'name',
-            [
-                'attribute' => 'position_id',
-                'value' => 'adPosition.name'
-            ],
-            'type',
+            'slug',
+            'size',
             [
                 'attribute' => 'status',
                 'value' => function ($model) {
-                    return Ad::getStatusList()[$model->status];
+                    return $model::getStatusList()[$model->status];
                 }
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {list} {update} {delete}',
+                'buttons' => [
+                    'list' => function ($url, $model, $key) {
+                        $url = \yii\helpers\Url::to(['ad/index', 'slug' => $model->slug]);
+                        return Html::a("<span class=\"glyphicon glyphicon-list\"></span>", $url, [
+                            'title' => '设置广告'
+                        ]);
+                    }
+                ]
+            ],
         ],
     ]); ?>
 </div>

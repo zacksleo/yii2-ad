@@ -22,8 +22,6 @@ use kartik\file\FileInput;
 
             <?= $form->field($model, 'position_id')->dropDownList(ArrayHelper::map(AdPosition::findAll(['status' => AdPosition::STATUS_ACTIVE]), 'id', 'name')) ?>
             <?= $form->field($model, 'name') ?>
-            <?= $form->field($model, 'type') ?>
-            <?= $form->field($model, 'text')->textarea() ?>
 
             <?= $form->field($model, 'img')->widget(FileInput::className(), [
                 'options' => [
