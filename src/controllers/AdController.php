@@ -73,6 +73,10 @@ class AdController extends Controller
     {
         $model = new Ad();
         $model->setScenario('insert');
+        $slug = Yii::$app->request->get('slug');
+        if (!empty($slug) && ($position = AdPosition::findOne(['slug' => $slug])) != null) {
+            $model->position_id = $position->id;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
