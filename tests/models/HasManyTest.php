@@ -68,6 +68,7 @@ class HasManyTest extends TestCase
         $this->assertTrue($this->positionModel->save());
 
         $this->model1 = new Ad();
+        $this->model1->detachBehavior('fileBehavior');
         $this->model1->position_id = $this->positionModel->id;
         $this->model1->name = "ad one";
         $this->model1->img = "img.jpg";
@@ -78,6 +79,7 @@ class HasManyTest extends TestCase
         $this->assertTrue($this->model1->save());
 
         $this->model2 = new Ad();
+        $this->model2->detachBehavior('fileBehavior');
         $this->model2->position_id = $this->positionModel->id;
         $this->model2->name = "ad two";
         $this->model2->img = "img.jpg";

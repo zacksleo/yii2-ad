@@ -5,7 +5,11 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use zacksleo\yii2\ad\Module;
 use zacksleo\yii2\ad\models\AdPosition;
-use kartik\file\FileInput;
+
+$css = <<<CSS
+.file-preview-image{max-width:200px;max-height:200px;}
+CSS;
+$this->registerCss($css);
 
 /* @var $this yii\web\View */
 /* @var $model zacksleo\yii2\ad\models\AdPosition */
@@ -23,22 +27,16 @@ use kartik\file\FileInput;
             <?= $form->field($model, 'position_id')->dropDownList(ArrayHelper::map(AdPosition::findAll(['status' => AdPosition::STATUS_ACTIVE]), 'id', 'name')) ?>
             <?= $form->field($model, 'name') ?>
 
-            <?= $form->field($model, 'img')->widget(FileInput::className(), [
+            <?= \nemmo\attachments\components\AttachmentsInput::widget([
+                'id' => 'file-input',
+                'model' => $model,
                 'options' => [
-                    'accept' => 'image/*',
                     'multiple' => false
                 ],
                 'pluginOptions' => [
-                    'initialPreview' => [
-                        str_replace('/admin/', '/', $model->getUploadUrl('img'))
-                    ],
-                    'showRemove' => true,
-                    'initialPreviewAsData' => true,
-                    'initialCaption' => $model->img,
-                    'overwriteInitial' => true,
-                    'maxFileSize' => 2800
+                    'maxFileCount' => 1
                 ]
-            ]); ?>
+            ]) ?>
 
             <?= $form->field($model, 'url') ?>
             <?= $form->field($model, 'status')->dropDownList($model::getStatusList()) ?>

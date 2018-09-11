@@ -43,8 +43,7 @@ class Ad extends ActiveRecord
             [['position_id', 'name'], 'required'],
             [['position_id', 'type', 'status', 'order'], 'integer'],
             [['text'], 'string'],
-            ['img', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
-            [['name', 'url'], 'string', 'max' => 255],
+            [['name', 'url', 'img'], 'string', 'max' => 255],
         ];
     }
 
@@ -54,13 +53,9 @@ class Ad extends ActiveRecord
     public function behaviors()
     {
         return [
-            [
-                'class' => UploadImageBehavior::className(),
-                'attribute' => 'img',
-                'scenarios' => ['insert', 'update'],
-                'placeholder' => '@app/modules/user/assets/images/userpic.jpg',
-                'galleryId' => 1
-            ],
+            'fileBehavior' => [
+                'class' => \nemmo\attachments\behaviors\FileBehavior::className()
+            ]
         ];
     }
 
@@ -84,18 +79,26 @@ class Ad extends ActiveRecord
 
     public function fields()
     {
-        $fields = parent::fields();
-        unset($fields['id'], $fields['position_id'],  $fields['text'], $fields['type'], $fields['status'], $fields['order']);
-        $fields['img'] = function () {
-            $path = str_replace('api/uploads/', '', $this->getUploadUrl('img'));
-            if (isset($_ENV['API_HOST'])) {
-                $url = $_ENV['API_HOST'] . 'files/' . $path;
-            } else {
-                $url = Url::to(['file/view', 'path' => $path], true);
+        return [
+            'id',
+            'name',
+            'order',
+            'url',
+            'img' => function () {
+                if ($this->files && $this->files[0] instanceof \nemmo\attachments\models\File) {
+                    return getenv('BASE_URL') . $this->files[0]->getUrl();
+                }
+                return 'https://ws1.sinaimg.cn/large/a76d6e45gy1fj5d3ckxgej205x05vaa4.jpg';
             }
-            return $url;
-        };
-        return $fields;
+        ];
+    }
+
+    public function getImg()
+    {
+        if ($this->files && $this->files[0] instanceof \nemmo\attachments\models\File) {
+            return $this->files[0]->getUrl();
+        }
+        return 'https://ws1.sinaimg.cn/large/a76d6e45gy1fj5d3ckxgej205x05vaa4.jpg';
     }
 
     /**

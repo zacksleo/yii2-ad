@@ -72,7 +72,6 @@ class AdController extends Controller
     public function actionCreate()
     {
         $model = new Ad();
-        $model->setScenario('insert');
         $slug = Yii::$app->request->get('slug');
         if (!empty($slug) && ($position = AdPosition::findOne(['slug' => $slug])) != null) {
             $model->position_id = $position->id;
@@ -95,7 +94,6 @@ class AdController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $model->scenario = 'update';
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
