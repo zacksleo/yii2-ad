@@ -30,7 +30,7 @@ use kartik\file\FileInput;
                 ],
                 'pluginOptions' => [
                     'initialPreview' => [
-                        $model->img,
+                        str_replace('/admin/', '/', $model->getUploadUrl('img'))
                     ],
                     'showRemove' => true,
                     'initialPreviewAsData' => true,
