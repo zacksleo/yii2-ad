@@ -116,8 +116,11 @@ class TestCase extends PHPUnit_Framework_TestCase
             'modules' => [
                 'ad' => [
                     'class' => 'zacksleo\yii2\ad\Module',
-                    'controllerNamespace' => 'zacksleo\yii2\ad\tests\controllers'
-                ]
+                    'controllerNamespace' => 'zacksleo\yii2\ad\controllers'
+                ],
+                'attachments' => [
+                    'class' => \nemmo\attachments\Module::className(),
+                ],
             ]
 
         ], $config));
@@ -193,7 +196,7 @@ EOF;
                 updated_at datetime not null
             )
             ;
-            
+
             create index idx_gallery_id_status
                 on tb_gallery (id, status)
             ;
@@ -211,7 +214,7 @@ EOF;
                 position int(1) default '0' null
             )
             ;
-            
+
             create index idx_gallery_galleryId
                 on tb_gallery_file (gallery_id)
             ;

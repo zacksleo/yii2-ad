@@ -27,7 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'position_id',
                 'value' => 'adPosition.name'
             ],
-            'type',
+            [
+                'attribute' => 'img',
+                'value' => function ($model) {
+                    return $model->getImg();
+                },
+                'format' => ['image', ['style' => 'max-width:100px;max-height:100px']],
+            ],
             [
                 'attribute' => 'status',
                 'value' => function ($model) {
