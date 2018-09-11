@@ -1,4 +1,4 @@
-engines:
+plugins:
   duplication:
     enabled: true
     config:
@@ -11,11 +11,10 @@ engines:
   phpmd:
     enabled: true
     config:
-    checks:
-      UnusedLocalVariable:
-        enabled: false
+      file_extensions: "php"
 ratings:
   paths:
   - "**.php"
-exclude_paths:
-- tests/
+exclude_patterns:
+- "tests/"
+- "vendor/"
