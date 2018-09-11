@@ -12,9 +12,16 @@ class SlugAction extends Action
 
     public function run()
     {
-        if (($position = AdPosition::findOne(['slug' => $this->slug])) == null) {
+        if (($position = AdPosition::findOne(['slug' => $this->slug, 'status' => AdPosition::STATUS_ACTIVE])) == null) {
             return [];
         }
-        return Ad::find()->orderBy('order DESC')->where(['position_id' => $position->id])->all();
+        return Ad::find()->orderBy('order DESC')
+            ->where(
+                [
+                    'position_id' => $position->id,
+                    'status' => Ad::STATUS_ACTIVE
+                ]
+            )
+            ->all();
     }
 }
