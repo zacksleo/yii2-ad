@@ -37,7 +37,7 @@ class AdController extends Controller
     public function actionIndex()
     {
         $slug = Yii::$app->request->get('slug');
-        $query = Ad::find();
+        $query = Ad::find()->orderBy('order');
         $this->view->title = '广告列表: ';
         if (!empty($slug) && ($position = AdPosition::findOne(['slug' => $slug])) != null) {
             $query = $query->andWhere(['position_id' => $position->id]);
