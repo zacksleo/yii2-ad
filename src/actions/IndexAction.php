@@ -9,6 +9,6 @@ class IndexAction extends Action
 {
     public function run()
     {
-        return Ad::find()->orderBy('order DESC')->all();
+        return Ad::find()->orderBy('order')->all();
     }
 }

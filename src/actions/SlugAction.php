@@ -15,7 +15,7 @@ class SlugAction extends Action
         if (($position = AdPosition::findOne(['slug' => $this->slug, 'status' => AdPosition::STATUS_ACTIVE])) == null) {
             return [];
         }
-        return Ad::find()->orderBy('order DESC')
+        return Ad::find()->orderBy('order')
             ->where(
                 [
                     'position_id' => $position->id,
