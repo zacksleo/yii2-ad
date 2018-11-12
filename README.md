@@ -9,7 +9,7 @@
 
 # Prerequisites
 
-Install [Yii2 attachments(https://github.com/Nemmo/yii2-attachments) first
+Install [Yii2 attachments](https://github.com/Nemmo/yii2-attachments) first
 
 ## Migration
 
