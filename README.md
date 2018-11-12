@@ -7,8 +7,11 @@
 [![Code Coverage](https://scrutinizer-ci.com/g/zacksleo/yii2-ad/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/zacksleo/yii2-ad/?branch=master)
 # yii2 ad module
 
+# Prerequisites
 
-## Migration 
+Install [Yii2 attachments(https://github.com/Nemmo/yii2-attachments) first
+
+## Migration
 
 + Config Migration Path  in Yii config file like this
 
