@@ -11,6 +11,7 @@
   ],
   "minimum-stability": "stable",
   "require": {
+    "npm-asset/bootstrap-datetime-picker": "^2.4",
     "nemmo/yii2-attachments": "^1.0.0-beta.3"
   },
   "require-dev": {

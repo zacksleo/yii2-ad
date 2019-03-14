@@ -21,7 +21,8 @@ class SlugAction extends Action
                     'position_id' => $position->id,
                     'status' => Ad::STATUS_ACTIVE
                 ]
-            )
+            )->andWhere(['<=', 'available_from', time()])
+            ->andWhere(['>', 'available_to', time()])
             ->all();
     }
 }

@@ -126,6 +126,8 @@ class AdController extends Controller
     protected function findModel($id)
     {
         if (($model = Ad::findOne($id)) !== null) {
+            $model->available_from = date('Y-m-d H:i', $model->available_from);
+            $model->available_to = date('Y-m-d H:i', $model->available_to);
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
