@@ -59,6 +59,8 @@ class AdTest extends TestCase
         $find->detachBehavior('fileBehavior');
         $find->text = "mg-path";
         $find->img = "text";
+        $find->available_from = '2019-10-01 10:00';
+        $find->available_to = '2019-10-01 10:00';
         $res = $find->save();
         $this->assertTrue($res);
         $this->assertTrue($model->delete() > 0);
