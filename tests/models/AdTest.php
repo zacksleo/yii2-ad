@@ -52,6 +52,8 @@ class AdTest extends TestCase
         $model->url = "link-url";
         $model->status = 1;
         $model->order = 1;
+        $model->available_from = time();
+        $model->to = time();
         $this->assertTrue($model->save());
         $find = Ad::findOne(['id' => $model->id]);
         $find->detachBehavior('fileBehavior');
