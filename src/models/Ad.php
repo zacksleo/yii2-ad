@@ -20,6 +20,8 @@ use yii\db\ActiveRecord;
  * @property string $url
  * @property integer $status
  * @property integer $order
+ * @property integer $available_from
+ * @property integer $available_to
  */
 class Ad extends ActiveRecord
 {
@@ -44,6 +46,7 @@ class Ad extends ActiveRecord
             [['position_id', 'type', 'status', 'order'], 'integer'],
             [['text'], 'string'],
             [['name', 'url', 'img'], 'string', 'max' => 255],
+            [['available_from', 'available_to'], 'date', 'format' => 'yyyy-MM-dd HH:mm'],
         ];
     }
 
@@ -74,6 +77,8 @@ class Ad extends ActiveRecord
             'url' => Module::t('ad', 'Url'),
             'status' => Module::t('ad', 'Status'),
             'order' => Module::t('ad', 'Order'),
+            'available_from' => Module::t('ad', 'AvailableFrom'),
+            'available_to' => Module::t('ad', 'AvailableTo'),
         ];
     }
 
@@ -116,5 +121,12 @@ class Ad extends ActiveRecord
     public function getAdPosition()
     {
         return $this->hasOne(AdPosition::className(), ['id' => 'position_id']);
+    }
+
+    public function beforeSave($insert)
+    {
+        $this->available_from = strtotime($this->available_from);
+        $this->available_to = strtotime($this->available_to);
+        return parent::beforeSave($insert);
     }
 }

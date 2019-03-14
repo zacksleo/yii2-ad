@@ -24,4 +24,6 @@ return [
 
     'Ad Positions' => '广告位置',
     'Ads' => '广告列表',
+    'AvailableFrom' => '开始投放时间',
+    'AvailableTo' => '停止投放时间'
 ];

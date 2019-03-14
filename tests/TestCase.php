@@ -165,7 +165,9 @@ class TestCase extends PHPUnit_Framework_TestCase
                 type smallint(6) null,
                 url varchar(255) null,
                 status tinyint(1) null,
-                `order` smallint(6) null
+                `order` smallint(6) null,
+                available_from int,
+                available_to int
             )
 EOF;
 
