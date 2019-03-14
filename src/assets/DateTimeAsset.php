@@ -4,7 +4,7 @@ namespace zacksleo\yii2\ad\assets;
 
 use yii\web\AssetBundle;
 
-class DatetimeAsset extends AssetBundle
+class DateTimeAsset extends AssetBundle
 {
     public $sourcePath = '@npm/bootstrap-datetime-picker';
 

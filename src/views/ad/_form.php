@@ -5,7 +5,7 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 use zacksleo\yii2\ad\Module;
 use zacksleo\yii2\ad\models\AdPosition;
-use zacksleo\yii2\ad\assets\DatetimeAsset;
+use zacksleo\yii2\ad\assets\DateTimeAsset;
 
 $css = <<<CSS
 .file-preview-image{max-width:200px;max-height:200px;}
