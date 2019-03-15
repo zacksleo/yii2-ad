@@ -48,6 +48,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Ad::getStatusList()[$model->status];
                 }
             ],
+            'available_from',
+            'available_to',
         ],
     ]) ?>
 

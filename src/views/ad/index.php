@@ -35,6 +35,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => ['image', ['style' => 'max-width:100px;max-height:100px']],
             ],
             [
+                'attribute' => 'available_from',
+                'value' => function ($model) {
+                    return date('Y-m-d H:i:s', $model->available_from);
+                }
+            ],
+            [
+                'attribute' => 'available_to',
+                'value' => function ($model) {
+                    return date('Y-m-d H:i:s', $model->available_to);
+                }
+            ],
+            [
                 'attribute' => 'status',
                 'value' => function ($model) {
                     return Ad::getStatusList()[$model->status];
